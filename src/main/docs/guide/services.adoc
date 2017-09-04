@@ -1,0 +1,20 @@
+Add a service which handles the registration of a user in the database. 
+
+[source,groovy]
+.grails-app/services/demo/RegisterService.groovy
+----
+include::{sourceDir}/grails-app/services/demo/RegisterService.groovy[]
+----
+
+<1> Implement explicitely  https://async.grails.org/latest/api/grails/events/EventPublisher.html[EventPublisher] trait
+<2> Instead of annotating the method with `@Publisher` which is usually the recommended approach to publish an event, we do it here manully with `notifiy` method.
+
+We consume the event in a different service. The consumer is completely decoupled from the sender. In a real application you will probably send an email to the user who just registered asking him to verify his email address. In this guide, we save a `Notification` in the database.
+
+[source,groovy]
+.grails-app/services/demo/WelcomeEmailService.groovy
+----
+include::{sourceDir}/grails-app/services/demo/WelcomeEmailService.groovy[]
+----
+
+<1> To consume an event use the https://async.grails.org/latest/api/grails/events/annotation/Subscriber.html[Subscriber] annotation. We use the event id to subscribe to.
