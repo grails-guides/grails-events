@@ -3,7 +3,9 @@ package demo
 import geb.spock.GebSpec
 import grails.gorm.transactions.Rollback
 import grails.testing.mixin.integration.Integration
+import spock.lang.IgnoreIf
 
+@IgnoreIf({System.getProperty('geb.env')})
 @Integration
 class RegisterControllerSpec extends GebSpec {
 
