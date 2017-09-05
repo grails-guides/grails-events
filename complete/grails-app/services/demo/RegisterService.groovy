@@ -13,7 +13,7 @@ class RegisterService {
     MessageSource messageSource
 
     @Transactional
-    @Publisher('userSaved') // <1>
+    @Publisher // <1>
     User saveUser(User user) {
         user.save(failOnError: true) // <2>
         user

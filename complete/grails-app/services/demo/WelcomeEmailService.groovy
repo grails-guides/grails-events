@@ -10,8 +10,8 @@ import groovy.util.logging.Slf4j
 class WelcomeEmailService {
 
     @Transactional
-    @Subscriber('userSaved') // <1>
-    void onUserSaved(User user) {
+    @Subscriber // <1>
+    void saveUser(User user) {
         Notification notification = new Notification(email: user.email, subject: 'Welcome to Grails App')
         // TODO Send Email
         if ( !notification.save() ) {
