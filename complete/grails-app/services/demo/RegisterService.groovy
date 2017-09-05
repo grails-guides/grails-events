@@ -1,6 +1,7 @@
 package demo
 
 import grails.events.EventPublisher
+import grails.gorm.transactions.Transactional
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 
@@ -8,6 +9,7 @@ import groovy.util.logging.Slf4j
 @Slf4j
 class RegisterService implements EventPublisher { // <1>
 
+    @Transactional
     User register(RegisterCommand cmd) {
         String email = cmd.email
         User user = cmd as User
