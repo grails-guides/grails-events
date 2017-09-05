@@ -11,8 +11,8 @@ class WelcomeEmailService {
 
     @Transactional
     @Subscriber('userSaved') // <1>
-    void onUserSaved(String email) {
-        Notification notification = new Notification(email: email, subject: 'Welcome to Grails App')
+    void onUserSaved(User user) {
+        Notification notification = new Notification(email: user.email, subject: 'Welcome to Grails App')
         // TODO Send Email
         if ( !notification.save() ) {
             log.error('unable to save notification {}', notification.errors.toString())

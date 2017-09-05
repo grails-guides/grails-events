@@ -1,7 +1,6 @@
 package demo
 
 import groovy.transform.CompileStatic
-import org.springframework.context.MessageSource
 
 @CompileStatic
 class RegisterController {
@@ -9,8 +8,6 @@ class RegisterController {
     static allowedMethods = [index: 'GET', save: 'POST']
 
     RegisterService registerService
-
-    MessageSource messageSource
 
     def index() {
         [signUpInstance:  new RegisterCommand()]
@@ -23,11 +20,13 @@ class RegisterController {
             return
         }
 
-        User user = registerService.register(cmd)
-        flash.message = messageSource.getMessage('user.saved',
-                [user.email] as Object[],
-                "User saved with ${user?.email} email address",
-                request.locale)
+        SaveUserResult result = registerService.register(cmd, request.locale)
+        flash.message = result.message
+        if ( result.error ) {
+            flash.error = result.error
+            render view: 'index', model: [signUpInstance: cmd]
+            return
+        }
         redirect action: 'index'
     }
 }
