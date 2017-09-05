@@ -7,7 +7,7 @@ include::{sourceDir}/grails-app/services/demo/RegisterService.groovy[]
 ----
 
 <1> Implement explicitely  https://async.grails.org/latest/api/grails/events/EventPublisher.html[EventPublisher] trait
-<2> Instead of annotating the method with `@Publisher` which is usually the recommended approach to publish an event, we do it here manully with `notifiy` method.
+<2> Instead of annotating the method with `@Publisher` which is usually the recommended approach to publish an event, we do it here manually with `notify` method.
 
 We consume the event in a different service. The consumer is completely decoupled from the sender. In a real application you will probably send an email to the user who just registered asking him to verify his email address. In this guide, we save a `Notification` in the database.
 
