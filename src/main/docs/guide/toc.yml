@@ -13,3 +13,5 @@ writingTheApp:
   testing: Testing
 runningTheApp:
   title: Running the Tests
+helpWithGrails:
+  title: Help with Grails
