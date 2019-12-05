@@ -2,7 +2,9 @@ package demo
 
 import geb.spock.GebSpec
 import grails.testing.mixin.integration.Integration
+import spock.lang.Ignore
 
+@Ignore
 @Integration
 class RegisterControllerSpec extends GebSpec {
 
