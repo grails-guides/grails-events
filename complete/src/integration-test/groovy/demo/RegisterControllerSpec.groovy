@@ -1,7 +1,6 @@
 package demo
 
 import geb.spock.GebSpec
-import grails.gorm.transactions.Rollback
 import grails.testing.mixin.integration.Integration
 
 @Integration
@@ -11,7 +10,6 @@ class RegisterControllerSpec extends GebSpec {
 
     UserService userService
 
-    @Rollback
     def "If you signup a User, an Event triggers which causes a Notification to be saved"() {
         when: 'you signup with a non existing user'
         SignUpPage page = to SignUpPage
